@@ -1,0 +1,6 @@
+tcp        0      0 sunb-a7a89465b6.r:47968 172.21.1.50:8101        ESTABLISHED
+tcp        0      0 sunb-a7a89465b6.r:47112 172.21.1.50:8101        ESTABLISHED
+tcp        0      0 sunb-a7a89465b6.r:47266 172.21.1.50:8101        ESTABLISHED
+tcp        0      0 sunb-a7a89465b6.r:56550 realsil-94:microsoft-ds ESTABLISHED
+tcp        0      0 sunb-a7a89465b6.r:47954 172.21.1.50:8101        ESTABLISHED
+tcp        0      0 sunb-a7a89465b6.r:47952 172.21.1.50:8101        ESTABLISHED
