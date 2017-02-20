@@ -1,0 +1,18 @@
+using mode:
+awk [-F field-separator] 'commands' input-files
+awk -f awk-script-file input-files
+
+or:
+awk [-F field-separator] 'commands' < input-files
+input-files | awk [-F field-separator] 'commands'
+
+awk [-F field-separator] 'BEGIN {print "begining------"} {print $1 "\t" $3} END {print "ending-------"}' input-files
+
+#print all fields
+awk '{print $0}' input-file
+
+#养成好习惯：
+整个awk命令用单引号扩起来；
+命令内所有引号成对出现；
+用花括号括起动作语句，用圆括号括起条件语句；
+
