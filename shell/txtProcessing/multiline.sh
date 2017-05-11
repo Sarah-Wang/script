@@ -98,7 +98,13 @@ fileOpt(){
 	#EOF可以替换为其他任意字符
 	#cmd << "EOF" YOUR DOCUMENT EOF如果后续文本中包含变量，则不展开。
 	#cmd <<- EOF YOUR DOCUMENT EOF，会将YOUR DOCUMENT的前导TAB删除掉
-	#注意：最后一个EOF前后不能包含任何空格！！
+	#注意：最后一个EOF前后不能包含任何空格或TAB！！
+	#注释多行shell代码的方法
+		#:<< BLOCK
+		#COMMENTS HERE
+		#BLOCK
+	#如果注释行中有反引号，可以请单引号帮忙，即:<< 'BLOCK DOCUMENT BLOCK'
+		#或者干脆用:<< ' DOCUMENT '
 	cat << EOF >output.txt
 	echo $1
 EOF
@@ -109,6 +115,25 @@ EOF
 	echo $1
 EOF
 
-}
-fileOpt jojljo
+	:<< Block
+	ls
+	cd ..
+Block
 
+	#自定义文件描述符
+	#创建文件描述符fd用于写入,fd>=3
+	exec 4>outfile
+	echo "test for exec fd" >&4
+	#创建文件描述符用于追加
+	exec 5>>outfileadd
+	echo "append txt test" >&5
+	#创建文件描述符用于读取
+	exec 6<input.txt
+	cat <&6
+	#close fd
+	exec 6<&-
+	exec 4<&-
+	exec 5<&-
+}
+
+fileOpt param1

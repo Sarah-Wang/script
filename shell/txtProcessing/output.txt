@@ -1,3 +1,5 @@
-	echo jojljo
+	echo param1
 	echo $1
-echo $1
+4echo $1
+6
+9
