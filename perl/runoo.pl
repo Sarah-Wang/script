@@ -1,7 +1,5 @@
 #!/usr/bin/perl
-##Copyright 2017 by Sarah Wang
-print "hello world\n";
-#use 5.010
+use 5.010
 #say "hello world";
 #print "hello world\n";
 #
@@ -47,9 +45,6 @@ sub Hello{
 
 # 函数调用
 Hello();
-#!/usr/bin/perl
-##Copyright 2017 by Sarah Wang
-
 
 # 定义求平均值函数
 sub Average{
@@ -148,7 +143,7 @@ print "函数外部字符串值：$string\n";
 #注1：state仅能创建闭合作用域为子程序内部的变量。
 #注2：state是从Perl 5.9.4开始引入的，所以使用前必须加上 use。
 #注3：state可以声明标量、数组、哈希。但在声明数组和哈希时，不能对其初始化（至少Perl 5.14不支持）。
-use feature 'state';
+#use feature 'state';
 
 sub PrintCount{
    state $count = 0; # 初始化变量
