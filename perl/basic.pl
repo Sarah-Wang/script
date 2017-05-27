@@ -235,6 +235,193 @@ print "mykeys: $mykeys\n";
 print "myvals: $myvals\n";
 
 
+#use 5.010
+#say "hello world";
+#print "hello world\n";
+#
+$datastring = localtime();
+print "\$datastring= $datastring\n";
+
+@months = qw(一月 二月 三月 四月 五月 六月 七月 八月 九月 十月 十一月 十二月);
+@days = qw(星期天 星期一 星期二 星期三 星期四 星期五 星期六);
+
+print "\$_ is: $_\n";
+foreach (1..10){
+	print "count to $_\n";
+}
+print "\$_ is: $_\n";
+
+@array = 3..6;
+@arrnew = reverse(@array);
+print "new array: @arrnew\n";
+@wilma = reverse 3..6;
+print "wilma: @wilma\n";
+@fred = 1..4;
+@fred = reverse @fred;
+print "fred: @fred\n";
+
+@rocks = qw/ bedrock slate rubble granite /;
+@sorted = sort @rocks;
+print "sorted: @sorted\n";
+@back = reverse sort @rocks;
+print "back: @back\n";
+@rocks = sort @rocks;
+print "rocks: @rocks\n";
+@numbers = sort 98..103;
+print "numbers: @numbers\n";
+
+my @rocks = qw/ bedrock slate rubble granite /;
+while ( my($index, $value) = each @rocks ) {
+	print "$index: $value\n";
+}
+
+foreach $index (0 .. $#rocks ){
+	print "$index: @rocks[$index]\n";
+}
+
+@people = qw( fred barney betty );
+@sorted = sort @people;
+print "sorted: @sorted\n";
+$num = 13 + @people; #here, @people is length of array
+print "num = $num\n";
+
+$backwards = reverse qw/ bedrock slate rubble granite /;
+print "backwards: $backwards\n";
+
+#this is useful, but not good for test
+#to use it, delete @code = qw{};
+@code = qw{
+chomp( @input = <STDIN> );
+@input = reverse @input;
+print "input is: @input\n";
+
+@list = qw/sarah july petty/;
+while (chomp ($line = <STDIN>)){
+	print "@list[$line-1]\n";
+}
+
+chomp(@input = <STDIN>);
+@input = sort @input;
+print "@input\n";
+while ( my($index, $value) = each @input ){
+	print "$value\n";
+}
+
+};
+
+sub max {
+	if (@_ != 2){
+		warn "the number of params is not 2.\n";
+	}
+	my($m, $n) = @_;
+	if ($m > $n) {$m;} else {$n;}
+}
+
+$n = &max(10, 15);
+print "max: $n\n";
+
+sub maxBest {
+	my $max = shift @_;
+	foreach (@_) {
+		if ($_ > $max) {
+			$max = $_;
+		}
+	}
+	$max;
+}
+
+$n = &maxBest(10, 15, 30, 2);
+print "max: $n\n";
+
+sub give_list{
+	($start, $end) = @_;
+	if ($start < $end){
+		$start..$end;
+	}else{
+		reverse $end..$start;
+	}
+}
+
+@list = give_list(8,4);
+print "list: @list\n";
+
+#this is a code
+#use 5.010;
+@statetest = qw/
+&running_sum(5,6);
+&running_sum(1..3);
+&running_sum(4);
+
+sub running_sum{
+	state $sum = 0;
+	state @numbers;
+	foreach my $number (@_) {
+		push @numbers, $number;
+		$sum += $number;
+	}
+
+	print "The sum of (@numbers) is $sum\n";
+}
+/;
+
+
+sub total{
+	@nums = @_;
+	$sum = 0;
+	foreach $i (@nums){
+		$sum = $sum + $i;
+	}
+	$sum;
+}
+
+sub avarage{
+	@nums = @_;
+	$tol = total(@nums);
+	$ava = $tol/($#nums + 1);
+}
+
+$tol = total(qw/1 2 3/);
+print "tol: $tol\n";
+$ava = avarage(qw/1 2 3/);
+print "ava: $ava\n";
+
+$tol2 = total(1..1000);
+print "tol2: $tol2\n";
+$ava2 = avarage(1..1000);
+print "ava2: $ava2\n";
+
+
+%data = ('google', 'google.com', 'runoob', 'runoob.com', 'taobao', 'taobao.com');
+
+print "\$data{'google'} = $data{'google'}\n";
+print "\$data{'runoob'} = $data{'runoob'}\n";
+print "\$data{'taobao'} = $data{'taobao'}\n";
+
+%data = ('google'=>'google.com', 'runoob'=>'runoob.com', 'taobao'=>'taobao.com');
+
+%data = (google=>'google.com', runoob=>'runoob.com', taobao=>'taobao.com');
+$data{'google'} = 'google.com';
+$data{'runoob'} = 'runoob.com';
+$data{'taobao'} = 'taobao.com';
+
+@data_array = %data;
+print "hash to array: @data_array\n";
+
+my %new_data = reverse %data;
+@new_array = %new_data;
+print "hash after reverse: @new_array\n";
+
+my @mykeys = keys %data;
+my @myvals = values %data;
+print "mykeys: @mykeys\n";
+print "myvals: @myvals\n";
+
+my $mykeys = keys %data;
+my $myvals = values %data;
+print "mykeys: $mykeys\n";
+print "myvals: $myvals\n";
+
+
 while ( ($key, $value) = each %data ){
 	print "$key => $value\n";
 }
