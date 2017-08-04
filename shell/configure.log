@@ -1,0 +1,48 @@
++ gcc -c test9859.c
+Checking for unistd.h... Yes.
+
++ gcc -c test9859.c
+Checking for stdarg.h... Yes.
++ gcc -c test17357.c
+Checking for unistd.h... Yes.
+
++ gcc -c test17357.c
+Checking for stdarg.h... Yes.
+=== test18113.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+-c test18113.c
++ -c test18113.c
+./gcc.sh: line 61: -c: command not found
+(exit code 127)
+Checking for unistd.h... No.
+
+=== test18113.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+-c test18113.c
++ -c test18113.c
+./gcc.sh: line 61: -c: command not found
+(exit code 127)
+Checking for stdarg.h... No.
+=== test18835.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+~/master/toolchain/rsdk/bin/rsdk-linux-gcc -c -Os -fstrict-aliasing -fstrict-overflow -I/home/sarah/master/target/tmpfs/include -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN test18835.c
++ '~/master/toolchain/rsdk/bin/rsdk-linux-gcc' -c -Os -fstrict-aliasing -fstrict-overflow -I/home/sarah/master/target/tmpfs/include -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN test18835.c
+./gcc.sh: line 59: ~/master/toolchain/rsdk/bin/rsdk-linux-gcc: No such file or directory
+(exit code 127)
+Checking for unistd.h... No.
+
+=== test18835.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+~/master/toolchain/rsdk/bin/rsdk-linux-gcc -c -Os -fstrict-aliasing -fstrict-overflow -I/home/sarah/master/target/tmpfs/include -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN test18835.c
++ '~/master/toolchain/rsdk/bin/rsdk-linux-gcc' -c -Os -fstrict-aliasing -fstrict-overflow -I/home/sarah/master/target/tmpfs/include -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN test18835.c
+./gcc.sh: line 59: ~/master/toolchain/rsdk/bin/rsdk-linux-gcc: No such file or directory
+(exit code 127)
+Checking for stdarg.h... No.
