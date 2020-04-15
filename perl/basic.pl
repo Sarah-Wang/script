@@ -12,13 +12,6 @@ print "sarah"x3;
 print "good" x 2.6;
 print "ha" x (1+2);
 print 6.5/808;
-$alef = chr(0x05D0);
-$alpha = chr(hex('03b1'));
-$omega = chr(0x03c9);
-$code = ord('?');
-print "$alef$alpha$omega\n";
-print "? code = $code\n";
-print "other form: \x{03b1}\n";
 
 @array = qw(pebbles dino fred barney betty);
 @remove = splice @array, 2;
@@ -465,3 +458,145 @@ while ( <$list> ){
 foreach $key (keys %words){
 	print "$key: $words{$key}\n";
 }
+
+my $feeling = "not_bad";
+unless($feeling =~ /good/){
+	print "she was not good now.\n";
+}
+
+$j=3;
+$i=5;
+until($j > $i){
+	printf "$j > $i is false\n";
+	$j++;
+}
+
+print "hello \n" if 5>4;
+print "world\n" unless 3>7;
+$num=3;
+print "stop $num\n" while ($num--);
+print "item $_\n" foreach (5..7);
+
+{
+	my $alef = chr(0x05D0);
+	my $alpha = chr(hex('03b1'));
+	my $omega = chr(0x03c9);
+	my $code = ord('?');
+	print "$alef$alpha$omega\n";
+	print "? code = $code\n";
+	print "other form: \x{03b1}\n";
+}
+
+#$mess = "";
+if (! defined $mess){
+	print "\$mess was not defined\n";
+}elsif($mess =~ /^-?\d+.?$/){
+	print "\$mess is a integer\n";
+}elsif($mess =~ /^-?\d+.\d+$/){
+	print "\$mess is a float number\n";
+}elsif ($mess eq ''){
+	print "\$mess is a empty string\n";
+}else{
+	print "mess is a string '$mess'\n";
+}
+
+@people = qw( sarah lily tom sarah tom july );
+%count;
+$count{$_}++ foreach @people;
+print "$_: $count{$_}\n" foreach (keys %count);
+
+for(1..3){
+	print "$_\n";
+}
+foreach(1..3){
+	print "$_\n";
+}
+
+
+@not_comment = qw{
+	my $myfile;
+	die "open file failed!\n" if (! open $myfile, '<', 'words.txt');
+	while (<$myfile>){
+	foreach (split){
+		$total++;
+		next if /\W/;
+		$valid++;
+		$count{$_}++;
+	}
+	}
+	print "total segments: $total; total words: $valid\n";
+	foreach $word (keys %count){
+	print "$word has been seen for $count{$word} times\n";
+	}
+
+};
+
+print "\n";
+
+my $myfile;
+die "open file failed!\n" if (! open $myfile, '<', 'words.txt');
+LINE: while (<$myfile>){
+WORD: foreach (split){
+	$total++;
+	last LINE if /__END__/;
+	next WORD if /\W/;
+	$valid++;
+	$count{$_}++;
+	}
+}
+print "total segments: $total; total words: $valid\n";
+foreach $word (keys %count){
+print "$word has been seen for $count{$word} times\n";
+}
+
+foreach (1..10){
+	print "now at $_\n";
+	print "please select mode: last, next ,redo or none of the above\n";
+	#chomp($mode = <STDIN>);
+	$mode = "last";
+	print "\n";
+	last if $mode =~ /last/i;
+	next if $mode =~ /next/i;
+	redo if $mode =~ /redo/i;
+	print "bad choice！ Go forward!\n";
+}
+
+my $average = $whonos ? 100/$whonos : "----";
+print "average = $average\n";
+
+$wid = 60;
+my $size =
+($wid < 10) ? "small" :
+($wid < 20) ? "medium" :
+($wid < 50) ? "large" : "extra-large";
+print "size = $size\n";
+
+foreach my $try (0, '0', undef, 1, "b"){
+print "trying [$try] --> ";
+my $value = $try // 'default';
+print "\tgot [$value]\n";
+#printf "\tgot [%s]\n",$value // ''; #没有定义时用空字符串代替
+}
+print "\n";
+
+
+sub guess{
+my $bingo = int(1+rand100);
+while (1){
+	print "Please input a number\n";
+	my $num = <STDIN>;
+	chomp;
+	last if $num =~ /(quit)|(exit)|^$/;
+	if ($num > $bingo) {
+		print "too high\n" if $num > $bingo;
+		redo;
+	}elsif ($num < $bingo){
+		print "too low\n" if $num < $bingo;
+		redo;
+	}else{
+		print "Congratulations!\n";
+		last;
+	}
+}
+}
+&guess;

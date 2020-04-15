@@ -1,13 +1,7 @@
-cooking
-wenfei
-good
-chicken
-food
-like
-good
-doing
-modest
-why
-think
-worry
-worry
+ doing why like like
+
+good good
+chicken food
+
+__END__
+worry worry
